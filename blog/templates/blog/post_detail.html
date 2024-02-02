@@ -1,0 +1,20 @@
+<!-- templates/blog/post_detail.html -->
+
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+  <div class="post-detail">
+    <a href="{% url 'posts' %}" class="back-arrow">&larr; Back</a>
+    <h1>{{ post.title }}</h1>
+    <small>Published on {{ post.published_at | date:"M d, Y" }} by {{ post.author | title }}</small>
+    <p class="post-content">{{ post.content }}</p>
+    {% if user.is_authenticated and user == post.author %}
+    <p>
+        <a href="{% url 'post-edit' post.id %}" style="color: green; margin-top: 10px;">Edit</a>
+        <a href="{% url 'post-delete' post.id %}" style="color: red; margin-top: 10px;">Delete</a>
+      </p>
+      
+    {% endif %}
+  </div>
+{% endblock content %}

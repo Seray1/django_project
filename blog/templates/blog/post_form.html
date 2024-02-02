@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <div class="post-form-container">
+    <h2>{% if id %} Edit {% else %} New {% endif %} Post</h2>
+    <form method="post" novalidate class="post-form">
+      {% csrf_token %} 
+      {{ form.as_p }}
+      <input type="submit" value="Save" class="btn-save" />
+    </form>
+  </div>
+{% endblock content %}
